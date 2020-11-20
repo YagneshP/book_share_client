@@ -6,6 +6,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
+import { Link, NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function ButtonAppBar() {
+export default function Navbar() {
   const classes = useStyles();
 
   return (
@@ -82,6 +83,8 @@ export default function ButtonAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+					<Button color="inherit" component={NavLink} to="/library">Library</Button>
+	        <Button component={Link}  color="inherit" to="/users/:id/collection">Collection</Button>
           <Button color="inherit">Login</Button>
 					<Button color="inherit">SignUp</Button>
 					<Button color="inherit">About</Button>
