@@ -7,7 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link, NavLink } from 'react-router-dom';
-
+import {connect} from "react-redux"
+import {getCollection} from "../../store/actions/userAction"
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -59,9 +60,9 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-export default function Navbar() {
+ function Navbar(props) {
   const classes = useStyles();
-
+const {getuserCollection} = props
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -84,7 +85,7 @@ export default function Navbar() {
             />
           </div>
 					<Button color="inherit" component={NavLink} to="/library">Library</Button>
-	        <Button component={Link}  color="inherit" to="/users/:id/collection">Collection</Button>
+	        <Button component={Link}  color="inherit" to="/users/:id/collection" onClick={()=> getuserCollection(1)}>Collection</Button>
           <Button color="inherit">Login</Button>
 					<Button color="inherit">SignUp</Button>
 					<Button color="inherit">About</Button>
@@ -93,3 +94,8 @@ export default function Navbar() {
     </div>
   );
 }
+const mapDispatchToProps = dispatch =>({
+	getuserCollection : id => dispatch(getCollection(id))
+})
+
+export default connect(null, mapDispatchToProps)(Navbar);

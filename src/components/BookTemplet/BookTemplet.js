@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {  Button, Divider, Grid, Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import {connect} from "react-redux";
+import {postCollection} from "../../store/actions/userAction"
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -18,18 +20,24 @@ authors:{
 		...theme.typography.body1,
 		color:"#63a2e2",
 	},
-
-
-
 }));
 const BookTemplet = (props) => {
-	const {book, user} = props;
-	console.log("book", book);
-	console.log("props", props);
+
+const{addBook} = props
+	const {book, user, isLoggedIn} = props;
+
 	const  truncate = function(str, n){
 		return (str.length > n) ? str.substr(0, n-1) + '...' : str; 
 		// &hellip;'
 	};
+// 	const handleClick = (item) =>{
+// 	user.books.map(book => book.industryIdentifiers[0].identifier !== item.industryIdentifiers[0].identifier ? console.log("book.Indentifier",book.industryIdentifiers[0].identifier):console.log("item.Indentifier",item.industryIdentifiers[0].identifier)  );
+// 	console.log(user.books);
+//   const updatedUser = {
+// 	    ...user,
+// 	     books: user.books.map(book =>(book.industryIdentifiers[0].identifier === item.industryIdentifiers[0].identifier) ? alert("You have already this book in your collection"):	[...user.books,item])
+// 	    }
+// }
 	const classes = useStyles();
 	return (
 		<div className={classes.root}>
@@ -49,7 +57,7 @@ const BookTemplet = (props) => {
 				<Typography variant="body1" component="p" className={classes.subtext}>Description : <Typography variant="body2" component="span" >{truncate(book.description,100)}</Typography></Typography>
 			</Grid>
 			<Grid item xs={3} xl={1} container alignContent="space-around">
-					{user ?<Button  variant="outlined" color="secondary">Remove </Button> : <Button  variant="outlined" color="primary">Add To List</Button>}
+					 <Button  variant="outlined" color="primary" onClick={()=>addBook(1)}>Add To List</Button>
 					<Button variant="outlined" color="secondary">View Detail</Button>
 			</Grid>
 		</Grid>
@@ -57,5 +65,10 @@ const BookTemplet = (props) => {
 	</div>
 	)
 }
+const mapDispatchToProps = dispatch =>{
+	return {
+		addBook : dispatch((id)=> postCollection(1))
+	}
+}
 
-export default BookTemplet
+export default  connect(null, mapDispatchToProps)(BookTemplet)   
