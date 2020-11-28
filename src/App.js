@@ -6,9 +6,10 @@ import {makeStyles} from '@material-ui/core/styles';
 import {BrowserRouter as Router,Switch,Route,} from "react-router-dom";
 import {Grid} from "@material-ui/core";
 import {connect} from "react-redux"
+import SignUpForm from "./components/SignUpForm/SignUpForm";
 const useStyles = makeStyles((theme) => ({
-	library: {
-		margin: "15px 15px"
+	navbar: {
+		textAlign:"center"
 	},
 }));
 
@@ -45,16 +46,20 @@ function App(props) {
 	return (
 		<Router>
 			< Grid container direction = "column"	 >
-	     	<Grid item >
+	     	<Grid item className={classes.navbar}>
 		      <Navbar / >
 		    </Grid>
-        <Grid item container className = {classes.library} >
+				
+        <Grid item  >
 					<Switch>
 						<Route path="/library">
 							<BookCard user={user} books={books} / >
 						</Route>
 						<Route path="/users/:id/collection">
 							<BookCollection user={user} collection={collection}/ >
+						</Route>
+						<Route path="/">
+						<SignUpForm/>
 						</Route>
 					</Switch>
 		    </Grid>   

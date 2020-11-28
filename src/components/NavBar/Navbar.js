@@ -68,10 +68,10 @@ const {getuserCollection} = props
       <AppBar position="static">
         <Toolbar>
           
-          <Typography variant="h6" className={classes.title}>
+          <Typography  className={classes.title}>
             BookShare
           </Typography>
-					<div className={classes.search}>
+					{/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -88,7 +88,7 @@ const {getuserCollection} = props
 	        <Button component={Link}  color="inherit" to="/users/:id/collection" onClick={()=> getuserCollection(1)}>Collection</Button>
           <Button color="inherit">Login</Button>
 					<Button color="inherit">SignUp</Button>
-					<Button color="inherit">About</Button>
+					<Button color="inherit">About</Button> */}
         </Toolbar>
       </AppBar>
     </div>
