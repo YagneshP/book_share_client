@@ -23,9 +23,9 @@ authors:{
 }));
 const BookTemplet = (props) => {
 
-const{addBook} = props
+// const{addBook} = props
 	const {book, user, isLoggedIn} = props;
-
+  const{volumeInfo}= book
 	const  truncate = function(str, n){
 		return (str.length > n) ? str.substr(0, n-1) + '...' : str; 
 		// &hellip;'
@@ -43,21 +43,21 @@ const{addBook} = props
 		<div className={classes.root}>
 		<Grid container  style={{margin:"10px 0"}} spacing={2} >
 			<Grid item xs={3} xl={2} style={{textAlign:"center"}}>
-				<img src={`${book.imageLinks.thumbnail}`} alt={`${book.title}:${book.subtitle}`}/>
+				<img src={volumeInfo.imageLinks?`${volumeInfo.imageLinks.thumbnail}`:null} alt={`${volumeInfo.title}:${volumeInfo.subtitle}`}/>
 			</Grid>
 			<Grid item xs={6} xl={9}style={{alignSelf:"center"}} >
 				<Typography variant="h5" className={classes.text} component="a">
-				 {book.title} 
+				 {volumeInfo.title} 
 				</Typography>
-				<Typography variant="body1" component="p" className={classes.subtext}>{book.subtitle}</Typography> 
+				<Typography variant="body1" component="p" className={classes.subtext}>{volumeInfo.subtitle}</Typography> 
 				<Typography variant="body2" component="p" className={classes.subtext} >
-				by 	<Typography variant="body2" component="span" className={classes.authors} >{book.authors.join(" , ")}</Typography> 
+				by 	<Typography variant="body2" component="span" className={classes.authors} >{volumeInfo.authors.join(" , ")}</Typography> 
 				</Typography>
-				<Typography variant="body1" component="p" className={classes.subtext}>Publisher, Date : <Typography variant="body2" component="span" className={classes.authors} >{book.publisher} , {book.publishedDate}</Typography></Typography>
-				<Typography variant="body1" component="p" className={classes.subtext}>Description : <Typography variant="body2" component="span" >{truncate(book.description,100)}</Typography></Typography>
+				<Typography variant="body1" component="p" className={classes.subtext}>Publisher, Date : <Typography variant="body2" component="span" className={classes.authors} >{volumeInfo.publisher} , {volumeInfo.publishedDate}</Typography></Typography>
+				<Typography variant="body1" component="p" className={classes.subtext}>Description : <Typography variant="body2" component="span" >{volumeInfo.description? truncate(volumeInfo.description,100):null}</Typography></Typography> 
 			</Grid>
 			<Grid item xs={3} xl={1} container alignContent="space-around">
-					 <Button  variant="outlined" color="primary" onClick={()=>addBook(1)}>Add To List</Button>
+					 <Button  variant="outlined" color="primary">Add To List</Button>
 					<Button variant="outlined" color="secondary">View Detail</Button>
 			</Grid>
 		</Grid>
@@ -65,10 +65,10 @@ const{addBook} = props
 	</div>
 	)
 }
-const mapDispatchToProps = dispatch =>{
-	return {
-		addBook : dispatch((id)=> postCollection(1))
-	}
-}
+// const mapDispatchToProps = dispatch =>{
+// 	return {
+// 		addBook : dispatch((id)=> postCollection(1))
+// 	}
+// }
 
-export default  connect(null, mapDispatchToProps)(BookTemplet)   
+export default BookTemplet;
