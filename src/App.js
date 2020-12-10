@@ -12,6 +12,8 @@ import {getSearchData} from "./store/actions/seachAction"
 import SearchBar from "./components/NavBar/searchBar/SearchBar";
 import Library from "./components/Library/Library";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import { loadUser } from "./store/actions/userAction";
+
 
 const useStyles = makeStyles((theme) => ({
 	navbar: {
@@ -24,9 +26,10 @@ function App(props) {
 	const classes = useStyles();
 	// const[books, setBooks] = useState(null);
 	// const[user, setUser] = useState(null);
-	const{collection} = props;
+	const{collection,isAuthenticated, loadUser} = props;
 	// const[collection, setCollection]=useState(null);
 	useEffect(()=>{
+		loadUser()
 		// getSearchData()
 		// (async()=>{
 		// const booksFromApi = await getData();
@@ -62,7 +65,7 @@ function App(props) {
 						
 					
 						<PrivateRoute exact path="/library">	<Library/></PrivateRoute>
-					
+					<PrivateRoute exact path="/collection"><BookCollection/></PrivateRoute>
 						<Route exact path="/users/:id/collection">
 							{/* <BookCollection user={user} collection={collection}/ > */}
 						</Route>
@@ -76,7 +79,11 @@ function App(props) {
 }
 
 const mapStateToProps = state =>({
-collection : state.user.collections
+collection : state.user.collections,
+isAuthenticated:state.user.isAuthenticated
 })
 
-export default connect(mapStateToProps)(App) ;
+const mapDispatchToProps = dispatch =>({
+	loadUser : () => { dispatch(loadUser())}
+})
+export default connect(mapStateToProps, mapDispatchToProps)(App) ;

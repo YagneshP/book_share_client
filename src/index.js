@@ -7,6 +7,9 @@ import {createStore, combineReducers, compose, applyMiddleware} from "redux";
 import ReduxThunk from "redux-thunk";
 import userReducer from "./store/reducers/users"
 import searchReducer from './store/reducers/searchLib';
+import { persistStore, persistReducer } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
+import storage from 'redux-persist/lib/storage'
 // import axios from "axios";
 //request interceptor
 // axios.interceptors.request.use(function (config) {
@@ -16,20 +19,27 @@ import searchReducer from './store/reducers/searchLib';
 // 	// Do something with request error
 // 	return Promise.reject(error);
 // });
+const persistConfig = {
+  key: 'root',
+  storage,
+}
 //reducer to create store
-const rootRducer = combineReducers({
+const rootReducer = combineReducers({
 	user : userReducer,
 	library: searchReducer
 });
+// const persistedReducer = persistReducer(persistConfig, rootReducer)
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //create store
-const store = createStore(rootRducer, composeEnhancers(applyMiddleware(ReduxThunk)));
-
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(ReduxThunk)));
+// const persistor = persistStore(store);
 ReactDOM.render(
 	<Provider store={store}>
+		{/* <PersistGate loading={null} persistor={persistor}> */}
   <React.StrictMode>
     <App />
   </React.StrictMode>
+	{/* </PersistGate> */}
 	</Provider>,
   document.getElementById('root')
 );

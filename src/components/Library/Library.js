@@ -11,7 +11,7 @@ const Library = (props) => {
 		<>
 		<SearchBar/>
 		<div>
-			{loading ? <CircularProgress/>: library === null ? null : library.length === 0 ? <h1>Can not find book</h1> :  library.map(bookItem => <BookTemplet key={bookItem.id}  book={bookItem} />  )} 
+			{loading ? <CircularProgress/>: library === null ? null : library.length === 0 ? <h1>Can not find book</h1> :  library.map(bookItem => <BookTemplet key={bookItem.id} isCollection={false} book={bookItem} />  )} 
 		</div>
 		</>
 	)

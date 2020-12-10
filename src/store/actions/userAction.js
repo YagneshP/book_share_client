@@ -14,7 +14,9 @@ export const getUser = (dispatch)=>{
 			console.log(error.message) // need to desplay Errormessage here
 		})  
 	}
-
+export const loadUser = () => {
+	return dispatch =>	getUser(dispatch)
+	}
 
 export const signUpUser = (formData)=>{
 	return dispatch => {
@@ -50,6 +52,19 @@ export const logUser = (formData)=>{
 	}
 }
 
+//LogOut user
+const loggingOut = (dispatch)=>{
+	dispatch({
+		type:actionTypes.LOG_OUT_USER
+	})
+}
+export const logOutUser = () =>{
+	return dispatch =>{
+		console.log("log out clicked")
+		axiosInstance.post("http://localhost:8004/api/auth/logout")
+		.then(()=>loggingOut(dispatch))
+	}
+}
 
 
 
@@ -85,16 +100,36 @@ export const getCollection = (userId) =>{
 		.catch(error => dispatch(collectionError(error)));
 	}
 }
-const addBook = (book) =>({
+const addBook = (dispatch,data) =>(
+	dispatch({
 	type:  actionTypes.ADD_BOOK,
-	payload: book
-})
+	payload: data
+}))
 //adding book to collection
 export const addCollection = (userId,volumeId) =>{
-	return dispatch =>{
-		axiosInstance(`http://localhost:8004/api/users/${userId}/collection/add/${volumeId}`)
-		.then(res => dispatch(addBook(res)))
-		.catch(error => dispatch(collectionError(error)))
+	
+	return dispatch => {
+		console.log(`userId: ${userId}`,  `volumeId: ${volumeId}`);
+		axiosInstance.post(`http://localhost:8004/api/user/${userId}/collection/add/${volumeId}`)
+		.then(res => addBook(dispatch,res.data))
+		.catch(error =>collectionError(error) )
+	}
+}
+	
+const removeBook = (dispatch,data) => {
+	dispatch({
+		type: actionTypes.REMOVE_BOOK,
+		payload:data
+	})
+}
+//removin book from collection
+
+export const removeCollection = (userId, book_Id) => {
+	return dispatch => {
+		console.log(`userId: ${userId}, volumeId:${book_Id}`);
+		axiosInstance.delete(`http://localhost:8004/api/user/${userId}/collection/remove/${book_Id}`)
+		.then(res => removeBook(dispatch, res.data))
+		.catch(error => collectionError(error))
 	}
 }
 		

@@ -3,7 +3,7 @@
 import * as actionTypes from "../actionTypes"
 const intialState ={
 	isAuthenticated: false,
-	colletion:[],
+	collection:[],
 	user:null,
 	loading:false,
 	error:null
@@ -44,7 +44,14 @@ const intialState ={
 			case actionTypes.ADD_BOOK:
 				return{
 					...state,
-					collection: [action.payload,...state.colletion]
+					user:{...state.user, books:[...state.user.books, action.payload]},
+					collection: [action.payload,...state.collection]
+				}
+			case actionTypes.REMOVE_BOOK:
+				return{
+					...state,
+					user:{...state.user, 
+								books: state.user.books.filter(book => book._id !== action.payload._id ? book : null)}
 				}
 			case actionTypes.GET_COLLECTION:
 				return{
