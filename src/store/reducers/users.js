@@ -1,12 +1,13 @@
 
 
-import * as actionTypes from "../actionTypes"
+import * as actionTypes from "../actionTypes.js"
 const intialState ={
 	isAuthenticated: false,
 	collection:[],
 	user:null,
 	loading:false,
-	error:null
+	error:null,
+	message:null
 }
 
  const userReducer = (state = intialState, action) =>{
@@ -25,15 +26,17 @@ const intialState ={
 			// 		isAuthenticated:true
 			// 	}
 			case actionTypes.LOG_OUT_USER:
-			// case actionTypes.SIGN_USER_FAIL:
-			// case actionTypes.LOG_USER_FAIL:
+			case actionTypes.SIGN_USER_FAIL:
+			case actionTypes.LOG_USER_FAIL:
+			case actionTypes.GET_USER_FAIL:
 				return{
 					...state,
 					isAuthenticated:false,
 					user:null,
 					error:action.payload,
 					loading:false,
-					collection:[]
+					collection:[],
+					message:null
 				}
 
 			case actionTypes.SET_COLLECTION:
@@ -46,6 +49,11 @@ const intialState ={
 					...state,
 					user:{...state.user, books:[...state.user.books, action.payload]},
 					collection: [action.payload,...state.collection]
+				}
+			case actionTypes.ADD_BOOK_MESSAGE:
+				return{
+					...state,
+					message:action.payload
 				}
 			case actionTypes.REMOVE_BOOK:
 				return{
@@ -64,6 +72,11 @@ const intialState ={
 					...state,
 					loading:false,
 					error: action.payload
+				}
+			case actionTypes.CLEAR_ERROR:
+				return{
+					...state,
+					error:null
 				}
 			default:
 				return state

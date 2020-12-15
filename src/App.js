@@ -13,7 +13,7 @@ import SearchBar from "./components/NavBar/searchBar/SearchBar";
 import Library from "./components/Library/Library";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { loadUser } from "./store/actions/userAction";
-
+import AlertState from "./components/AlertState/AlertState"
 
 const useStyles = makeStyles((theme) => ({
 	navbar: {
@@ -58,6 +58,9 @@ function App(props) {
 					<SearchBar/>
 				</Grid> */}
 				
+				<Grid item >
+				<AlertState/>
+				</Grid>
         <Grid item  >
 					<Switch>
 				

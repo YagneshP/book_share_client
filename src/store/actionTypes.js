@@ -1,5 +1,5 @@
 //============== Serach Actions =============//
-export const GET_BOOKS = "GET_BOOKS";
+export  const GET_BOOKS = "GET_BOOKS";
 export const SET_BOOKS = "SET_BOOKS";
 export const LIB_ERROR = "LIB_ERROR"
 
@@ -18,3 +18,10 @@ export const LOG_USER = "LOG_USER";
 export const LOG_OUT_USER = "LOG_OUT_USER";
 export const LOG_USER_FAIL = "LOG_USER_FAIL";
 export const SIGN_USER_FAIL = "SIGN_USER_FAIL";
+export const GET_USER_FAIL = "GET_USER_FAIL";
+
+//========== Clear Error ============= //
+export const CLEAR_ERROR = "CLEAR_ERROR"
+
+
+export const ADD_BOOK_MESSAGE = "ADD_BOOK_MESSAGE"

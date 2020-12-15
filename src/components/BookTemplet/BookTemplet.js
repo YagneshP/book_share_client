@@ -36,8 +36,7 @@ let volumeInfo;
 		return (str.length > n) ? str.substr(0, n-1) + '...' : str; 
 		// &hellip;'
 	};
-	console.log("volumeInfo", volumeInfo);
-	console.log("isCollection", isCollection)
+
 	// const handleClick = () =>{
 	// user.books.map(book => book.industryIdentifiers[0].identifier !== item.industryIdentifiers[0].identifier ? console.log("book.Indentifier",book.industryIdentifiers[0].identifier):console.log("item.Indentifier",item.industryIdentifiers[0].identifier)  );
 	// console.log(user.books);
