@@ -76,6 +76,7 @@ const intialState ={
 			case actionTypes.CLEAR_ERROR:
 				return{
 					...state,
+					message:null,
 					error:null
 				}
 			default:

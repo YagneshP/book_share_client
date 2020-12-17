@@ -14,6 +14,17 @@ const getSearchDataFail = (error) =>({
 	type: actionTypes.LIB_ERROR,
 	payload: error
 })
+export const clearResult = () => ({
+type:actionTypes.CLEAR_LIB_RESULT
+	})
+
+
+
+// export const searchError =(dispatch,error) =>
+// dispatch({
+// 	 type: actionTypes.SEARCH_ERROR,
+// 	 payload:error
+//  })
 
 //getting books from backend
  export const getSearchData =(query)=>{
@@ -24,6 +35,8 @@ const getSearchDataFail = (error) =>({
 			params:{q:query}
 		})
 		.then(res => 	dispatch(getSerachDataSuccess(res.data)))
-		.catch(error => dispatch(getSearchDataFail(error)))
+		.catch(error => {
+			dispatch(getSearchDataFail(error.response.data.message))
+		})
 	 }
 };

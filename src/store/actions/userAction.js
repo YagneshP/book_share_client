@@ -1,11 +1,11 @@
 import * as actionTypes from "../actionTypes";
 import axiosInstance from "../../util/apiCall"
+
 // ============== Auth =====================//
 
 export const getUser = (dispatch)=>{
 		// /gettingUser from database
 		axiosInstance.get("http://localhost:8004/api/user").then(res => {
-			console.log("[ReceivedUser]",res);
 			dispatch({
 				type: actionTypes.SET_USER,
 				payload: res.data
@@ -43,7 +43,6 @@ export const signUpUser = (formData)=>{
 		// /signup
 		axiosInstance.post("http://localhost:8004/api/auth/signup",formData)
 		.then(res =>{
-			console.log("res.data",res.data);
 			getUser(dispatch);
 		} )
 		.catch(error => {
@@ -60,7 +59,6 @@ export const logUser = (formData)=>{
 		//login
 		axiosInstance.post("http://localhost:8004/api/auth/login",formData)
 		.then(res =>{
-			console.log("res.data",res.data);
 			getUser(dispatch);
 		} )
 		.catch(error => {
@@ -79,9 +77,9 @@ const loggingOut = (dispatch)=>{
 
 export const logOutUser = () =>{
 	return dispatch =>{
-		console.log("log out clicked")
 		axiosInstance.post("http://localhost:8004/api/auth/logout")
-		.then(()=>loggingOut(dispatch))
+		.then(()=>{
+			loggingOut(dispatch)})
 	}
 }
 
@@ -100,7 +98,7 @@ export const clearAlert = () => {
 return dispatch=> {
 	setTimeout(()=>{
 		clearError(dispatch)
-			},1500)
+			},3000)
 }
 }
 
@@ -147,12 +145,9 @@ export const addCollection = (userId,volumeId) =>{
 		console.log(`userId: ${userId}`,  `volumeId: ${volumeId}`);
 		axiosInstance.post(`http://localhost:8004/api/user/${userId}/collection/add/${volumeId}`)
 		.then(res => {
-			console.log("addbook",res.data)
-			console.log("newBook", res.data.newBook)
 			addBookMessage(dispatch, res.data.message)
 			addBook(dispatch,res.data.newBook)})
 		.catch(error =>{
-			console.log("same book adding error", error.response)
 			collectionError(dispatch,error.response.data.message)}) 
 	}
 }
@@ -167,9 +162,11 @@ const removeBook = (dispatch,data) => {
 
 export const removeCollection = (userId, book_Id) => {
 	return dispatch => {
-		console.log(`userId: ${userId}, volumeId:${book_Id}`);
 		axiosInstance.delete(`http://localhost:8004/api/user/${userId}/collection/remove/${book_Id}`)
-		.then(res => removeBook(dispatch, res.data))
+		.then(res => {
+			removeBook(dispatch, res.data.removedBook)
+			addBookMessage(dispatch, res.data.message)
+		})
 		.catch(error => collectionError(dispatch,error.response.data.message))
 	}
 }

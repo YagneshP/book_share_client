@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { Link, NavLink } from 'react-router-dom';
 import {connect} from "react-redux"
 import {getCollection,logOutUser} from "../../store/actions/userAction"
+import { clearResult } from '../../store/actions/seachAction';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -26,7 +27,11 @@ const useStyles = makeStyles((theme) => ({
  function Navbar(props) {
 	const classes = useStyles();
 
-const {getuserCollection,isAuthenticated,logOut} = props
+const {getuserCollection,isAuthenticated,logOut,clearLibResult} = props;
+const handleClick = () => {
+	clearLibResult()
+  logOut()
+}
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -40,7 +45,7 @@ const {getuserCollection,isAuthenticated,logOut} = props
 					{isAuthenticated ?(<>
 					<Button color="inherit" component={NavLink} to="/library">Library</Button>
 	        <Button color="inherit" component={NavLink} to="/collection">Collection</Button>
-         <Button color="inherit" onClick={logOut}>Logout</Button>
+         <Button color="inherit" onClick={handleClick}>Logout</Button>
 				 </>):(<><Button color="inherit">Login</Button>
 					<Button color="inherit">SignUp</Button></>)} 
 					<Button color="inherit">About</Button> 
@@ -51,7 +56,8 @@ const {getuserCollection,isAuthenticated,logOut} = props
 }
 const mapDispatchToProps = dispatch =>({
 	getuserCollection : id => dispatch(getCollection(id)),
-	logOut:()=> dispatch(logOutUser())
+	logOut:()=> dispatch(logOutUser()),
+	clearLibResult:()=>dispatch(clearResult())
 })
 const mapStateToProps = state => ({
 	isAuthenticated : state.user.isAuthenticated

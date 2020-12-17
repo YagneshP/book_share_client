@@ -24,7 +24,12 @@ const searchReducer = (state=intialState, action) =>{
 				loading:false,
 				error: action.payload
 			}
-	
+		case actionTypes.CLEAR_LIB_RESULT:
+			return{
+				...state,
+				loading:false,
+				library:null
+			}
 		default:
 		return state
 	}

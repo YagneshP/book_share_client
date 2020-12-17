@@ -2,7 +2,7 @@
 export  const GET_BOOKS = "GET_BOOKS";
 export const SET_BOOKS = "SET_BOOKS";
 export const LIB_ERROR = "LIB_ERROR"
-
+export const CLEAR_LIB_RESULT = "CLEAR_LIB_RESULT";
 //=========== UserCollection Actions ==============//
 export const GET_COLLECTION = "GET_COLLECTION";
 export const SET_COLLECTION = "SET_COLLECTION";

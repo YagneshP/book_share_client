@@ -13,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
 		...theme.typography.h4,
 		color:"#63a2e2"
 	},
+	title:{
+		...theme.typography.h5,
+		color:"#3f51b5"
+	},
 	subtext:{
 		...theme.typography.body1,
 		color:"grey",
@@ -55,8 +59,8 @@ let volumeInfo;
 				<img src={volumeInfo.imageLinks?`${volumeInfo.imageLinks.thumbnail}`:null} alt={volumeInfo.title?`${volumeInfo.title}:${volumeInfo.subtitle}`:null}/>
 			</Grid>
 			<Grid item xs={6} xl={9}style={{alignSelf:"center"}} >
-				<Typography variant="h5" className={classes.text} component="a">
-				 {volumeInfo.title} 
+				<Typography className={classes.title} >
+					<Link href={volumeInfo.previewLink} target="_blank">{volumeInfo.title} </Link> 
 				</Typography>
 				<Typography variant="body1" component="p" className={classes.subtext}>{volumeInfo.subtitle}</Typography> 
 				<Typography variant="body2" component="p" className={classes.subtext} >

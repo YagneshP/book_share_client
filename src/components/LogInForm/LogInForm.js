@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme)=>({
 const initialValues = {
 	firstName:"",
 	lastName:"",
+	city:"",
 	email:"",
 	password:""
 }
@@ -87,7 +88,9 @@ const LogInForm = (props) => {
 																		.required('Required'),
 																	lastName:Yup.string()
 																		.min(2, 'Too Short!')
-																		.max(70, 'Too Long!'),})}
+																		.max(70, 'Too Long!'),
+																	city:Yup.string()
+																		.required('City Name is required!')})}
 					>
 						{(props)=> (
 								<Form className={classes.root} >
@@ -95,6 +98,7 @@ const LogInForm = (props) => {
 									<>
 									 <Field id="firstName" name="firstName" as={CustomField}label = "FirstName"required></Field>
 									 <Field id="lastName" name="lastName" 	as={CustomField}	label = "LastName"></Field>
+									 <Field id="city" name="city" 	as={CustomField}	label = "City" required></Field>
 									</>}
 								  
 								

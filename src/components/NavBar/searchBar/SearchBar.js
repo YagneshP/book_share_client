@@ -1,11 +1,13 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import * as actions from "../../../store/actions/seachAction"
-import {connect} from "react-redux"
+import {connect} from "react-redux";
+
+import * as Yup from "yup";
+import {TextField} from "@material-ui/core";
+import {Formik,Form, Field, useField} from "formik";
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: '2px 4px',
@@ -15,16 +17,19 @@ const useStyles = makeStyles((theme) => ({
 		margin:"10px 20px"
 	},
 	searchForm:{
-			flexDirection: "column",
+			flexDirection: "row",
 			display: "flex",
-			alignItems: "center"
+			justifyContent: "center",
+			alignItems: "center",
+			padding:10
 	},
   input: {
     // marginLeft: theme.spacing(1),
     flex: 1,
   },
   iconButton: {
-		padding: 10,
+		padding: 5,
+		marginLeft:5,
 		backgroundColor:"#1d751dd6",
 		borderRadius:"10%"
   },
@@ -33,26 +38,60 @@ const useStyles = makeStyles((theme) => ({
     margin: 4,
   },
 }));
+const initialValues = {
+query:""
+}
 
+const validationSchema = Yup.object().shape({
+	query: Yup.string()
+		.required('Query is Required')
+});
+
+const CustomField = ({label,placeholder,type, required, ...props})=>{
+	const[field,form]= useField(props);
+	const errorText = form.error && form.touched ? form.error : "";
+	return <TextField type={type} required={required}label={label} {...field} helperText={errorText} error={!!errorText} placeholder={placeholder} />
+}
 const SearchBar=(props)=> {
-	const [ query, setQuery] = useState("")
+
+// const query =	createRef("")
+// 	const [ query, setQuery] = useState("")
 	const classes = useStyles();
-	const handleSubmit= (e) =>{
-		e.preventDefault();
-		console.log(query)
-		props.searchData(query);
-	}
+	// const handleSubmit= (e) =>{
+	// 	e.preventDefault();
+	// 	props.searchData(query);
+	// }
 
   return (
 		<div className={classes.searchForm}>
-
-	
-    <Paper component="form" className={classes.root} onSubmit={handleSubmit}>
+			{/* <Paper className={classes.root}> */}
+					<Formik
+					    enableReinitialize={true}
+							initialValues={initialValues }
+							onSubmit={(values)=>{ 
+								props.searchData(values);
+							}}
+							validationSchema={validationSchema }
+					>
+						{(props)=> (
+							<>
+								<Form>
+								
+									 <Field id="query" name="query" as={CustomField} placeholder="SearchBooks"    required></Field>
+									 
+									 <IconButton type="submit" className={classes.iconButton} aria-label="search" >
+        						<SearchIcon />
+      						</IconButton>
+									
+								</Form>		 
+									</> )}
+    {/* <Paper component="form" className={classes.root} onSubmit={handleSubmit}> */}
 
 			{/* <input  name="query" value={query} onChange={(e)=>setQuery(e.target,value/> */}
-      <InputBase
+      {/* <InputBase
 				className={classes.input}
 				name="query"
+				ref={query}
 				value={query}
 				onChange={(e)=>setQuery(e.target.value)}
         placeholder="Search Books...."
@@ -61,8 +100,12 @@ const SearchBar=(props)=> {
       <IconButton type="submit" className={classes.iconButton} aria-label="search" >
         <SearchIcon />
       </IconButton>
-    </Paper>
+    </Paper> */}
+		
+		</Formik>
+		{/* </Paper> */}
 		</div>
+	
   );
 }
 const mapDispatchToProps = dispatch =>( {
