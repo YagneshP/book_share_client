@@ -6,6 +6,7 @@ import MenuBookIcon from '@material-ui/icons/MenuBook';
 import * as Yup from "yup";
 import {signUpUser, logUser} from "../../store/actions/userAction";
 import {connect} from "react-redux"
+import { toggleForm } from '../../store/actions/toggleFormAction';
 const useStyles = makeStyles((theme)=>({
 	formDiv:{
 		height:"100%",
@@ -13,7 +14,6 @@ const useStyles = makeStyles((theme)=>({
 	},
 	formBox:{
 		margin: "10px auto",
-    // border: "2px solid black",
     padding: "10px 10px",
     borderRadius: "10px",
     backgroundColor: "#d4d8efc7",
@@ -52,9 +52,7 @@ const CustomField = ({label,placeholder,type, required, ...props})=>{
 	return <TextField type={type} required={required}label={label} {...field} helperText={errorText} error={!!errorText} placeholder={placeholder} />
 }
 const LogInForm = (props) => {
-	console.log(props.isAuthenticated)
-	const[loggedIn, setLoggedIn] = useState(true);
-	const{isAuthenticated} = props
+	const{isAuthenticated, loggedIn,toggleForm} = props
 	useEffect(
 		() => {
 			if (isAuthenticated) {
@@ -63,6 +61,10 @@ const LogInForm = (props) => {
 		},
 		[isAuthenticated, props.history]
 	);
+
+	const handleClick = () =>{
+		toggleForm()
+	}
 	const classes = useStyles();
 	return (
 		// <div className={classes.root}>
@@ -107,16 +109,14 @@ const LogInForm = (props) => {
 									<Button color="primary" variant="contained" fullWidth type="submit">
 											{loggedIn ? "Log In" : "Sign Up" }
 									</Button>
-									<pre>
-										{JSON.stringify(props.values, null, 2)}
-									</pre>
+								
 								</Form>
 						)}
 					</Formik>
 				</Grid>
 		
 		<Grid item>
-			<Typography variant="body1" style={{textAlign:"center"}}>Already have an account ? <Link onClick={()=> setLoggedIn(!loggedIn)}>{loggedIn ? "SignUp": "LogIn" }</Link> here</Typography>
+			<Typography variant="body2" style={{textAlign:"center"}}>Already have an account ? <Link onClick={toggleForm}>{loggedIn ? "SignUp": "LogIn" }</Link> here</Typography>
 		</Grid>
 		</div>
 	
@@ -125,10 +125,12 @@ const LogInForm = (props) => {
 	)
 }
 const mapStateToProps = state =>({
-	isAuthenticated: state.user.isAuthenticated
+	isAuthenticated: state.user.isAuthenticated,
+	loggedIn: state.form.logInForm
 })
 const mapDispatchToProps = dispatch =>({
 	signUp : (values)=>{dispatch(signUpUser(values))},
-	logIn:(values)=>{dispatch(logUser(values))}
+	logIn:(values)=>{dispatch(logUser(values))},
+	toggleForm : () => {dispatch(toggleForm())}
 })
 export default connect(mapStateToProps,mapDispatchToProps)(LogInForm);

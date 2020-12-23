@@ -46,7 +46,7 @@ let bookCollection = <CircularProgress/>;
 return (
 	<>
 <div>
-{collection === null ? bookCollection : collection.length === 0 ? <Typography style={{textAlign:"center"}} variant="h3" component="h2">You dont have any book in your library</Typography> :  currentBooks.map(collection => <BookTemplet key={collection.id} isCollection={true} book={collection} />  )} 
+{collection === null ? bookCollection : collection.length === 0 ? <Typography style={{textAlign:"center"}} variant="h6" component="p">You don't have any book in your library</Typography> :  currentBooks.map(collection => <BookTemplet key={collection.id} isCollection={true} book={collection} />  )} 
 </div>
 <div className={classes.root}>
 		{(collection !== null && collection.length !== 0) ?<Pagination count={totalPages} page={currentPage} className={classes.ul} onChange={handleChange}  color="primary"/>: null}

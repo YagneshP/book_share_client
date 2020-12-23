@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
-import {fade, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-
-import { Link, NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import{ AppBar,Toolbar, Typography,Button,IconButton,MenuItem,Menu, useMediaQuery}from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import { NavLink } from 'react-router-dom';
 import {connect} from "react-redux"
 import {getCollection,logOutUser} from "../../store/actions/userAction"
 import { clearResult } from '../../store/actions/seachAction';
+import { logInForm, signUpForm } from '../../store/actions/toggleFormAction';
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+		flexGrow: 1,
+		textAlign:"left"
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    // marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+		flexGrow: 1,
 	},
 
   
@@ -26,9 +24,29 @@ const useStyles = makeStyles((theme) => ({
 
  function Navbar(props) {
 	const classes = useStyles();
+	const [anchorEl, setAnchorEl] = useState(null);
+const mediaQuery =  useMediaQuery(`(max-width:500px)`);
+useEffect(()=>{
+if(!mediaQuery){setAnchorEl(null)}
+},[mediaQuery])
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-const {getuserCollection,isAuthenticated,logOut,clearLibResult} = props;
+  const handleClose = () => {
+    setAnchorEl(null);
+	};
+	const handleLogInClose = () =>{
+		setAnchorEl(null);
+		changeLogIn()
+	}
+	const handleSignUpCLose = () => {
+		setAnchorEl(null);
+		changeSignUp() 
+	}
+const {isAuthenticated,logOut,clearLibResult,changeSignUp,changeLogIn} = props;
 const handleClick = () => {
+	setAnchorEl(null);
 	clearLibResult()
   logOut()
 }
@@ -36,19 +54,52 @@ const handleClick = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          
-          <Typography  className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             BookShare
           </Typography>
-
-				
-					{isAuthenticated ?(<>
+				{mediaQuery ?
+				(<>				
+					<IconButton edge="start" className={classes.menuButton}aria-controls="simple-menu"aria-haspopup="true" color="inherit" aria-label="menu" onClick={handleMenuClick}>
+      				<MenuIcon />
+    			</IconButton>
+					<Menu
+					  id="simple-menu"
+					  anchorEl={anchorEl}
+					  keepMounted
+					  open={Boolean(anchorEl)}
+					  onClose={handleClose}
+					>{isAuthenticated ?
+							(<div>
+							<MenuItem onClick={handleClose}><Button color="inherit" component={NavLink} to="/library">Library</Button></MenuItem>		
+							<MenuItem onClick={handleClose}><Button color="inherit" component={NavLink} to="/collection">Collection</Button></MenuItem>
+							<MenuItem onClick={handleClose}><Button color="inherit" component={NavLink} to="/findRental">FindRental</Button></MenuItem>
+							<MenuItem onClick={handleClick}><Button color="inherit" >Logout</Button></MenuItem>
+							</div>)
+							:
+							(<div>
+							<MenuItem  onClick={handleLogInClose}><Button color="primary">Login</Button></MenuItem>
+					  	<MenuItem onClick={handleSignUpCLose}><Button color="inherit">SignUp</Button></MenuItem>
+					  	<MenuItem onClick={handleClose}><Button color="inherit" component={NavLink} to="/about">About</Button> </MenuItem>
+							</div>)}
+					
+					</Menu>
+					</>
+				):isAuthenticated ?
+					(<>
 					<Button color="inherit" component={NavLink} to="/library">Library</Button>
 	        <Button color="inherit" component={NavLink} to="/collection">Collection</Button>
-         <Button color="inherit" onClick={handleClick}>Logout</Button>
-				 </>):(<><Button color="inherit">Login</Button>
-					<Button color="inherit">SignUp</Button></>)} 
-					<Button color="inherit">About</Button> 
+					<Button color="inherit" component={NavLink} to="/findRental">FindRental</Button>
+         	<Button color="inherit" onClick={handleClick}>Logout</Button>
+				 	</>):
+				 	(<>
+					<Button color="inherit"onClick={()=> changeLogIn() }>Login</Button>
+				 	<Button color="inherit"onClick={()=> changeSignUp() }>SignUp</Button>
+					<Button color="inherit" component={NavLink} to="/about">About</Button>
+					</>)
+				}
+					
+					
+
         </Toolbar>
       </AppBar>
     </div>
@@ -57,7 +108,9 @@ const handleClick = () => {
 const mapDispatchToProps = dispatch =>({
 	getuserCollection : id => dispatch(getCollection(id)),
 	logOut:()=> dispatch(logOutUser()),
-	clearLibResult:()=>dispatch(clearResult())
+	clearLibResult:()=>dispatch(clearResult()),
+	changeSignUp:()=> dispatch(signUpForm()),
+	changeLogIn:()=> dispatch(logInForm())
 })
 const mapStateToProps = state => ({
 	isAuthenticated : state.user.isAuthenticated

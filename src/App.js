@@ -14,6 +14,8 @@ import Library from "./components/Library/Library";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { loadUser } from "./store/actions/userAction";
 import AlertState from "./components/AlertState/AlertState"
+import RentalSearch from "./components/RentalSearch/RentalSearch";
+import About from "./components/About/About";
 
 const useStyles = makeStyles((theme) => ({
 	navbar: {
@@ -24,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 function App(props) {
 	const classes = useStyles();
-	// const[books, setBooks] = useState(null);
-	// const[user, setUser] = useState(null);
 	const{collection,isAuthenticated, loadUser} = props;
 	// const[collection, setCollection]=useState(null);
 	useEffect(()=>{
@@ -42,12 +42,6 @@ function App(props) {
 	[]);
 		
 	
-		// const getCollection = async ()=>{
-		// 	const filteredId = 1;
-		// 	 const res = await fetch(`/users/${filteredId}`)
-		// 		const data = res.json();
-		// 		return data;
-		// 	 }
 	return (
 		<Router>
 			< Grid container direction = "column"	 >
@@ -66,9 +60,10 @@ function App(props) {
 				
 							{/* <BookCard user={user} books={books} / > */}
 						
-					
+					<Route exact path="/about"><About/></Route>
 						<PrivateRoute exact path="/library">	<Library/></PrivateRoute>
-					<PrivateRoute exact path="/collection"><BookCollection/></PrivateRoute>
+				  	<PrivateRoute exact path="/collection"><BookCollection/></PrivateRoute>
+						<PrivateRoute exact path="/findRental"><RentalSearch/></PrivateRoute>
 						<Route exact path="/users/:id/collection">
 							{/* <BookCollection user={user} collection={collection}/ > */}
 						</Route>

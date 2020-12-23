@@ -54,7 +54,6 @@ export const signUpUser = (formData)=>{
 //Login User which dispatch getUser after getting data which is token and get user from that token from server
 
 export const logUser = (formData)=>{
-	console.log("formData:", formData);
 	return dispatch => {
 		//login
 		axiosInstance.post("http://localhost:8004/api/auth/login",formData)
@@ -79,7 +78,9 @@ export const logOutUser = () =>{
 	return dispatch =>{
 		axiosInstance.post("http://localhost:8004/api/auth/logout")
 		.then(()=>{
-			loggingOut(dispatch)})
+			loggingOut(dispatch)
+			clearRentalUser(dispatch)
+		})
 	}
 }
 
@@ -171,18 +172,30 @@ export const removeCollection = (userId, book_Id) => {
 	}
 }
 		
-//postBook to collection
-// export const postCollection = (filteredId) =>{
-// 	return dispatch => {
-// 		fetch(`/users/${filteredId}/books`)
-// 		.then(res => {
-// 			console.log(res)
-// 			const data = res.json()
-// 		}).then(data => {
-// 			console.log(data);
-// 		});
-// 	}
-// }
+// findingUsers
+const rentalUsers =(dispatch,data) =>{
+	dispatch({
+		type:actionTypes.RENTAL_USERS,
+		payload:data
+	})
+}
+export const clearRentalUser = (dispatch) => dispatch({
+	type: actionTypes.CLEAR_RENTAL_USERS
+})
+
+export const findRental = (userId, radius, bookName) => {
+	return dispatch =>{
+		axiosInstance.get(`http://localhost:8004/api/user/${userId}/findUsers`,
+		{
+			params:{radius:radius, bookName:bookName}
+		}).then(res =>{
+			console.log("response after sending radius and userId for serach rental:", res)
+			rentalUsers(dispatch,res.data)
+		}	)
+	}
+	
+	
+}
 	
 
 	

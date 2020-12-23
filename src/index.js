@@ -10,6 +10,8 @@ import searchReducer from './store/reducers/searchLib';
 import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 import storage from 'redux-persist/lib/storage'
+import formReducer from './store/reducers/form';
+import rentalUserReducer from './store/reducers/rentalUser';
 // import axios from "axios";
 //request interceptor
 // axios.interceptors.request.use(function (config) {
@@ -26,7 +28,9 @@ const persistConfig = {
 //reducer to create store
 const rootReducer = combineReducers({
 	user : userReducer,
-	library: searchReducer
+	library: searchReducer,
+	form : formReducer,
+	rentalUsers: rentalUserReducer
 });
 // const persistedReducer = persistReducer(persistConfig, rootReducer)
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -36,9 +40,9 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(ReduxThu
 ReactDOM.render(
 	<Provider store={store}>
 		{/* <PersistGate loading={null} persistor={persistor}> */}
-  <React.StrictMode>
+  {/* <React.StrictMode> */}
     <App />
-  </React.StrictMode>
+  {/* </React.StrictMode> */}
 	{/* </PersistGate> */}
 	</Provider>,
   document.getElementById('root')
