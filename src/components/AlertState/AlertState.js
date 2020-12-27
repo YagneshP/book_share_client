@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import {connect} from "react-redux"
 import { clearAlert,  manualClearError } from '../../store/actions/userAction';
-import { Snackbar } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   root: {
 		margin:"15px auto",

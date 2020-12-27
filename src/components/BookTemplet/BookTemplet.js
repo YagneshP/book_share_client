@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {  Button, Divider, Grid, Typography,Link} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {connect} from "react-redux";
-import {addCollection, removeCollection} from "../../store/actions/userAction"
+import {addCollection, removeCollection} from "../../store/actions/collectionAction"
 // import {Link} from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
@@ -27,8 +27,6 @@ authors:{
 	},
 }));
 const BookTemplet = (props) => {
-
-// const{addBook} = props
 	const {book,user, addBook,isCollection,removeBook} = props;
 let volumeInfo;
 	if(isCollection){
@@ -49,19 +47,7 @@ let volumeInfo;
 		// Directly return the joined string
 		return splitStr.join(' '); 
  }
-	
-
-	// const handleClick = () =>{
-	// user.books.map(book => book.industryIdentifiers[0].identifier !== item.industryIdentifiers[0].identifier ? console.log("book.Indentifier",book.industryIdentifiers[0].identifier):console.log("item.Indentifier",item.industryIdentifiers[0].identifier)  );
-	// console.log(user.books);
-  // const updatedUser = {
-	//     ...user,
-	//      books: user.books.map(book =>(book.industryIdentifiers[0].identifier === item.industryIdentifiers[0].identifier) ? alert("You have already this book in your collection"):	[...user.books,item])
-	//     }
-// 	addBook(user._id,book.id);
-// }
 	const classes = useStyles();
-	// const{imageLinks,title,subtitle,authors}
 	return (
 		<div className={classes.root}>
 		<Grid container  style={{margin:"10px 0"}}  >
@@ -80,7 +66,7 @@ let volumeInfo;
 	{!isCollection?<Typography variant="body1" component="p" className={classes.subtext}>Description : <Typography variant="body2" component="span" >{volumeInfo.description? truncate(volumeInfo.description,100):null}</Typography></Typography>:null }
 			</Grid>
 			<Grid item xs={12} sm={3} md={3} lg={3}container justify='space-evenly' alignItems="center">
-				{!isCollection ?	<Button  variant="outlined" color="primary" onClick={()=> addBook(user._id, book.id)}>Add To List</Button>:	<Button  variant="outlined" color="primary" onClick={()=> removeBook(user._id, volumeInfo._id)}>Remove</Button>}
+				{!isCollection ?	<Button  variant="outlined" color="primary" onClick={()=>addBook(user._id, book.id)}>Add To List</Button>:	<Button  variant="outlined" color="primary" onClick={()=> removeBook(user._id, volumeInfo._id)}>Remove</Button>}
 			
 					<Button variant="outlined"  color="secondary" component={"a"} href={volumeInfo.previewLink} target="_blank">Preview</Button> 
 			</Grid>
@@ -95,8 +81,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>({
 
-		addBook : (userId,volumeId)=>dispatch (addCollection(userId,volumeId)),
-		removeBook:(userId,book_Id)=> dispatch(removeCollection(userId,book_Id))
+		addBook:(userId,volumeId)=>dispatch (addCollection(userId,volumeId)),
+		removeBook:(userId,book_Id)=>dispatch(removeCollection(userId,book_Id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookTemplet);

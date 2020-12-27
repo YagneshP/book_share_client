@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{ useState} from 'react'
 import {connect} from "react-redux"
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, CircularProgress } from '@material-ui/core';
@@ -35,6 +35,7 @@ const[currentPage, setCurrentPage] = useState(1)
 	const indexOfLastBook = currentPage * bookPerPage;
   const indexOfFirstBook= indexOfLastBook - bookPerPage;
 	const currentBooks = library !== null ? library.slice(indexOfFirstBook, indexOfLastBook) : 0;
+	
 	const handleChange = (event, value) => {
     setCurrentPage(value);
 	};

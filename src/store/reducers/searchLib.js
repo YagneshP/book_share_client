@@ -30,6 +30,11 @@ const searchReducer = (state=intialState, action) =>{
 				loading:false,
 				library:null
 			}
+		case actionTypes.CLEAR_ERROR:
+			return{
+				...state,
+				error:null
+			}
 		default:
 		return state
 	}

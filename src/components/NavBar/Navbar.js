@@ -4,7 +4,9 @@ import{ AppBar,Toolbar, Typography,Button,IconButton,MenuItem,Menu, useMediaQuer
 import MenuIcon from '@material-ui/icons/Menu';
 import { NavLink } from 'react-router-dom';
 import {connect} from "react-redux"
-import {getCollection,logOutUser} from "../../store/actions/userAction"
+import {logOutUser} from "../../store/actions/userAction";
+import {clearRentalUser} from "../../store/actions/rentalUsersActions"
+import {getCollection} from "../../store/actions/collectionAction"
 import { clearResult } from '../../store/actions/seachAction';
 import { logInForm, signUpForm } from '../../store/actions/toggleFormAction';
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
  function Navbar(props) {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = useState(null);
-const mediaQuery =  useMediaQuery(`(max-width:500px)`);
+const mediaQuery =  useMediaQuery(`(max-width:600px)`);
+const {isAuthenticated,logOut,clearLibResult,changeSignUp,changeLogIn,clearRental,rentalUsers} = props;
 useEffect(()=>{
 if(!mediaQuery){setAnchorEl(null)}
 },[mediaQuery])
@@ -34,7 +37,8 @@ if(!mediaQuery){setAnchorEl(null)}
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+		setAnchorEl(null);
+		clearRental();
 	};
 	const handleLogInClose = () =>{
 		setAnchorEl(null);
@@ -44,11 +48,17 @@ if(!mediaQuery){setAnchorEl(null)}
 		setAnchorEl(null);
 		changeSignUp() 
 	}
-const {isAuthenticated,logOut,clearLibResult,changeSignUp,changeLogIn} = props;
-const handleClick = () => {
+
+const handleLogOutClick = () => {
 	setAnchorEl(null);
 	clearLibResult()
   logOut()
+}
+
+const handleNavClick = () =>{
+	if(rentalUsers){
+		clearRental()
+	}
 }
   return (
     <div className={classes.root}>
@@ -73,7 +83,7 @@ const handleClick = () => {
 							<MenuItem onClick={handleClose}><Button color="inherit" component={NavLink} to="/library">Library</Button></MenuItem>		
 							<MenuItem onClick={handleClose}><Button color="inherit" component={NavLink} to="/collection">Collection</Button></MenuItem>
 							<MenuItem onClick={handleClose}><Button color="inherit" component={NavLink} to="/findRental">FindRental</Button></MenuItem>
-							<MenuItem onClick={handleClick}><Button color="inherit" >Logout</Button></MenuItem>
+							<MenuItem onClick={handleLogOutClick}><Button color="inherit" >Logout</Button></MenuItem>
 							</div>)
 							:
 							(<div>
@@ -86,10 +96,10 @@ const handleClick = () => {
 					</>
 				):isAuthenticated ?
 					(<>
-					<Button color="inherit" component={NavLink} to="/library">Library</Button>
-	        <Button color="inherit" component={NavLink} to="/collection">Collection</Button>
+					<Button color="inherit" onClick= {handleNavClick} component={NavLink} to="/library">Library</Button>
+	        <Button color="inherit" onClick= {handleNavClick} component={NavLink} to="/collection">Collection</Button>
 					<Button color="inherit" component={NavLink} to="/findRental">FindRental</Button>
-         	<Button color="inherit" onClick={handleClick}>Logout</Button>
+         	<Button color="inherit" onClick={handleLogOutClick}>Logout</Button>
 				 	</>):
 				 	(<>
 					<Button color="inherit"onClick={()=> changeLogIn() }>Login</Button>
@@ -97,9 +107,6 @@ const handleClick = () => {
 					<Button color="inherit" component={NavLink} to="/about">About</Button>
 					</>)
 				}
-					
-					
-
         </Toolbar>
       </AppBar>
     </div>
@@ -110,9 +117,11 @@ const mapDispatchToProps = dispatch =>({
 	logOut:()=> dispatch(logOutUser()),
 	clearLibResult:()=>dispatch(clearResult()),
 	changeSignUp:()=> dispatch(signUpForm()),
-	changeLogIn:()=> dispatch(logInForm())
+	changeLogIn:()=> dispatch(logInForm()),
+	clearRental:()=> dispatch(clearRentalUser(dispatch))
 })
 const mapStateToProps = state => ({
+	rentalUsers : state.rentalUsers.rentalUser,
 	isAuthenticated : state.user.isAuthenticated
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

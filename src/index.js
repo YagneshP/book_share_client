@@ -23,7 +23,7 @@ import rentalUserReducer from './store/reducers/rentalUser';
 // });
 const persistConfig = {
   key: 'root',
-  storage,
+	storage
 }
 //reducer to create store
 const rootReducer = combineReducers({
@@ -32,18 +32,19 @@ const rootReducer = combineReducers({
 	form : formReducer,
 	rentalUsers: rentalUserReducer
 });
-// const persistedReducer = persistReducer(persistConfig, rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer)
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //create store
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(ReduxThunk)));
-// const persistor = persistStore(store);
+// const store = createStore(rootReducer, composeEnhancers(applyMiddleware(ReduxThunk)));
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(ReduxThunk)));
+const persistor = persistStore(store);
 ReactDOM.render(
 	<Provider store={store}>
-		{/* <PersistGate loading={null} persistor={persistor}> */}
+		<PersistGate loading={null} persistor={persistor}>
   {/* <React.StrictMode> */}
     <App />
   {/* </React.StrictMode> */}
-	{/* </PersistGate> */}
+	</PersistGate>
 	</Provider>,
   document.getElementById('root')
 );

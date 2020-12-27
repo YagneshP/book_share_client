@@ -31,7 +31,10 @@ const useStyles = makeStyles((theme) => ({
 		padding: 5,
 		marginLeft:5,
 		backgroundColor:"#1d751dd6",
-		borderRadius:"10%"
+		borderRadius:"10%",
+		"&:hover":{
+			backgroundColor:"#caad02"
+		}
   },
   divider: {
     height: 28,
@@ -53,18 +56,9 @@ const CustomField = ({label,placeholder,type, required, ...props})=>{
 	return <TextField type={type} required={required}label={label} {...field} helperText={errorText} error={!!errorText} placeholder={placeholder} />
 }
 const SearchBar=(props)=> {
-
-// const query =	createRef("")
-// 	const [ query, setQuery] = useState("")
 	const classes = useStyles();
-	// const handleSubmit= (e) =>{
-	// 	e.preventDefault();
-	// 	props.searchData(query);
-	// }
-
-  return (
+ return (
 		<div className={classes.searchForm}>
-			{/* <Paper className={classes.root}> */}
 					<Formik
 					    enableReinitialize={true}
 							initialValues={initialValues }
@@ -85,25 +79,8 @@ const SearchBar=(props)=> {
 									
 								</Form>		 
 									</> )}
-    {/* <Paper component="form" className={classes.root} onSubmit={handleSubmit}> */}
-
-			{/* <input  name="query" value={query} onChange={(e)=>setQuery(e.target,value/> */}
-      {/* <InputBase
-				className={classes.input}
-				name="query"
-				ref={query}
-				value={query}
-				onChange={(e)=>setQuery(e.target.value)}
-        placeholder="Search Books...."
-        inputProps={{ 'aria-label': 'search book' }}
-      />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search" >
-        <SearchIcon />
-      </IconButton>
-    </Paper> */}
-		
 		</Formik>
-		{/* </Paper> */}
+	
 		</div>
 	
   );

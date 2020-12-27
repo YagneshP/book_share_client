@@ -34,15 +34,15 @@ let{collection}= props
 	const indexOfLastBook = currentPage * bookPerPage;
   const indexOfFirstBook= indexOfLastBook - bookPerPage;
 	const currentBooks = collection !== null ? collection.slice(indexOfFirstBook, indexOfLastBook) : 0;
-	const handleChange = (event, value) => {
+
+	const handleChange = ( value) => {
     setCurrentPage(value);
   };
-
-
 
 	const classes = useStyles();
 
 let bookCollection = <CircularProgress/>;	
+
 return (
 	<>
 <div>

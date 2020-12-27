@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import {TextField, Button, Grid,Typography, Link} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles"
 import {Formik,Form, Field, useField} from "formik";
@@ -61,13 +61,8 @@ const LogInForm = (props) => {
 		},
 		[isAuthenticated, props.history]
 	);
-
-	const handleClick = () =>{
-		toggleForm()
-	}
 	const classes = useStyles();
 	return (
-		// <div className={classes.root}>
 		<Grid container className={classes.formDiv}>
 		
 			<div className={classes.formBox}>
@@ -102,8 +97,6 @@ const LogInForm = (props) => {
 									 <Field id="lastName" name="lastName" 	as={CustomField}	label = "LastName"></Field>
 									 <Field id="city" name="city" 	as={CustomField}	label = "City" required></Field>
 									</>}
-								  
-								
 									<Field id="email" name="email" as={CustomField}label = "Email" required></Field>
 									<Field id="password"	name="password"	label="Password"	type="password" as={CustomField} required	/>
 									<Button color="primary" variant="contained" fullWidth type="submit">

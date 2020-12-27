@@ -1,12 +1,9 @@
-import React ,{useState} from 'react'
+import React  from 'react'
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom'
 
 const PrivateRoute = ({children, isAuthenticated,...rest}) => {
-	console.log("restProps",isAuthenticated);
-
-	// const[isAuthenticated, setIsAuthenticated]= useState(true);
-	return (<Route {...rest} render={({location})=> {
+	return (<Route {...rest} render={()=> {
 		return  isAuthenticated ? children : <Redirect to={{
 			pathname:"/login"
 		}} /> 
