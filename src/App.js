@@ -22,11 +22,11 @@ function App(props) {
 	const classes = useStyles();
 	return (
 		<Router>
-			< Grid container direction = "column"	 >
+			< Grid container direction = "column"	positon="relative" >
 	     	<Grid item className={classes.navbar}>
 		      <Navbar / >
 		    </Grid>
-				<Grid item >
+				<Grid item top={40} left="40%" postion="absolute" >
 				<AlertState/>
 				</Grid>
         <Grid item  >
@@ -35,7 +35,7 @@ function App(props) {
 						<PrivateRoute exact path="/library">	<Library/></PrivateRoute>
 				  	<PrivateRoute exact path="/collection"><BookCollection/></PrivateRoute>
 						<PrivateRoute exact path="/findRental"><RentalSearch/></PrivateRoute>
-						<Route  path="/" component={LogInForm}/>
+						<Route exact path="/" component={LogInForm}/>
 					
 					</Switch>
 		    </Grid>   

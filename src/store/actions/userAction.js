@@ -83,10 +83,6 @@ export const logOutUser = () =>{
 }
 
 
-// export const loadUser = () => {
-// 	return dispatch =>	getUser(dispatch)
-// 	}
-
 //=========== clear error ============//
 export const clearError = (dispatch) => {
 	dispatch({

@@ -25,7 +25,6 @@ const setCollection =(dispatch,data) =>{
 
 export const addCollection = (userId,volumeId) =>{
 	return dispatch => {
-		console.log(`userId: ${userId}`,  `volumeId: ${volumeId}`);
 		axiosInstance.post(`http://localhost:8004/api/user/${userId}/collection/add/${volumeId}`)
 		.then(res => {
 			addBookMessage(dispatch, res.data.message)

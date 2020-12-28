@@ -87,8 +87,8 @@ const handleNavClick = () =>{
 							</div>)
 							:
 							(<div>
-							<MenuItem  onClick={handleLogInClose}><Button color="primary">Login</Button></MenuItem>
-					  	<MenuItem onClick={handleSignUpCLose}><Button color="inherit">SignUp</Button></MenuItem>
+							<MenuItem  onClick={handleLogInClose}><Button color="primary"component={NavLink}>Login</Button></MenuItem>
+					  	<MenuItem onClick={handleSignUpCLose}><Button color="inherit"component={NavLink}>SignUp</Button></MenuItem>
 					  	<MenuItem onClick={handleClose}><Button color="inherit" component={NavLink} to="/about">About</Button> </MenuItem>
 							</div>)}
 					
@@ -102,8 +102,8 @@ const handleNavClick = () =>{
          	<Button color="inherit" onClick={handleLogOutClick}>Logout</Button>
 				 	</>):
 				 	(<>
-					<Button color="inherit"onClick={()=> changeLogIn() }>Login</Button>
-				 	<Button color="inherit"onClick={()=> changeSignUp() }>SignUp</Button>
+					<Button color="inherit"onClick={()=> changeLogIn() }component={NavLink} to="/">Login</Button>
+				 	<Button color="inherit"onClick={()=> changeSignUp() }component={NavLink} to="/">SignUp</Button>
 					<Button color="inherit" component={NavLink} to="/about">About</Button>
 					</>)
 				}

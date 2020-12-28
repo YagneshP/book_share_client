@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 import {connect} from "react-redux"
 import { clearAlert,  manualClearError } from '../../store/actions/userAction';
 const useStyles = makeStyles((theme) => ({
@@ -24,9 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
   return (<div className={classes.root}>{
 		(userError || bookError || message) ?
-	// <Snackbar open={(userError || bookError || message)?true :false}>
+	<Snackbar vertical="bottom" horizontal="center" open={(userError || bookError || message)?true :false}>
 		<Alert variant="filled" severity={(userError||bookError) ? "error" : message ? "success":"warning"} onClose={removeError}>{userError ? userError : bookError ? bookError : message ? message : null}</Alert>
-	//  </Snackbar>	
+	 </Snackbar>	
 		
 	: null
 	}
