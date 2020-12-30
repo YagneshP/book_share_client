@@ -6,6 +6,6 @@ const instance = axios.create({
 	withCredentials: true,
 });
 
-instance.defaults.headers.common['Content-Type'] ="applicatio/json";
+instance.defaults.headers.post['Content-Type'] ="applicatio/json";
 
 export default instance;
