@@ -8,7 +8,7 @@ import {clearRentalUser} from "./rentalUsersActions"
 export const signUpUser = (formData)=>{
 	return dispatch => {
 		// /signup
-		axiosInstance.post("/auth/signup",formData)
+		axiosInstance.post("/auth/signup",formData,{withCredentials: true})
 		.then(res =>{
 			getUser(dispatch);
 		} )
@@ -32,7 +32,7 @@ const signUpUserFail = (dispatch,error) =>{
 export const logUser = (formData)=>{
 	return dispatch => {
 		//login
-		axiosInstance.post("/auth/login",formData)
+		axiosInstance.post("/auth/login",formData,{withCredentials: true})
 		.then(res =>{
 			getUser(dispatch);
 		} )
