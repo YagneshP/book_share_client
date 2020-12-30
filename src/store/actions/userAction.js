@@ -8,7 +8,7 @@ import {clearRentalUser} from "./rentalUsersActions"
 export const signUpUser = (formData)=>{
 	return dispatch => {
 		// /signup
-		axiosInstance.post("http://localhost:8004/api/auth/signup",formData)
+		axiosInstance.post("/auth/signup",formData)
 		.then(res =>{
 			getUser(dispatch);
 		} )
@@ -30,7 +30,7 @@ const signUpUserFail = (dispatch,error) =>{
 export const logUser = (formData)=>{
 	return dispatch => {
 		//login
-		axiosInstance.post("http://localhost:8004/api/auth/login",formData)
+		axiosInstance.post("/auth/login",formData)
 		.then(res =>{
 			getUser(dispatch);
 		} )
@@ -49,7 +49,7 @@ const logUserFail = (dispatch, error) =>{
 
 export const getUser = (dispatch)=>{
 		// /gettingUser from database
-		axiosInstance.get("http://localhost:8004/api/user").then(res => {
+		axiosInstance.get("/user").then(res => {
 			dispatch({
 				type: actionTypes.SET_USER,
 				payload: res.data
@@ -74,7 +74,7 @@ const loggingOut = (dispatch)=>{
 }
 export const logOutUser = () =>{
 	return dispatch =>{
-		axiosInstance.post("http://localhost:8004/api/auth/logout")
+		axiosInstance.post("/auth/logout")
 		.then(()=>{
 			loggingOut(dispatch)
 			clearRentalUser(dispatch)
