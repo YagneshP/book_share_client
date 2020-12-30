@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const instance = axios.create({
-	baseURL:"http://localhost:8004",
+	baseURL:"https://book-share-server-yp.herokuapp.com/api",
 	withCredentials: true,
 });
 
