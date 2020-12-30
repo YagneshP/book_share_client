@@ -28,17 +28,14 @@ const BookCollection = (props) => {
 const[currentPage, setCurrentPage] = useState(1)
 let{collection}= props
 	const bookPerPage = 3;
-	// const currentPage = 1;
 	const totalBooks = collection !== null? collection.length : 0
 	const totalPages = Math.ceil( totalBooks/bookPerPage);
 	const indexOfLastBook = currentPage * bookPerPage;
   const indexOfFirstBook= indexOfLastBook - bookPerPage;
 	const currentBooks = collection !== null ? collection.slice(indexOfFirstBook, indexOfLastBook) : 0;
-
-	const handleChange = ( value) => {
+	const handleChange = (event, value) => {
     setCurrentPage(value);
-  };
-
+	};
 	const classes = useStyles();
 
 let bookCollection = <CircularProgress/>;	

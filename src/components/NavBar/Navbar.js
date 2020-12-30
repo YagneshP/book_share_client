@@ -37,8 +37,9 @@ if(!mediaQuery){setAnchorEl(null)}
   };
 
   const handleClose = () => {
+		if(rentalUsers){	clearRental()};
 		setAnchorEl(null);
-		clearRental();
+	
 	};
 	const handleLogInClose = () =>{
 		setAnchorEl(null);
@@ -87,8 +88,8 @@ const handleNavClick = () =>{
 							</div>)
 							:
 							(<div>
-							<MenuItem  onClick={handleLogInClose}><Button color="primary"component={NavLink}>Login</Button></MenuItem>
-					  	<MenuItem onClick={handleSignUpCLose}><Button color="inherit"component={NavLink}>SignUp</Button></MenuItem>
+							<MenuItem  onClick={handleLogInClose}><Button color="primary"component={NavLink}to="/">Login</Button></MenuItem>
+					  	<MenuItem onClick={handleSignUpCLose}><Button color="inherit"component={NavLink}to="/">SignUp</Button></MenuItem>
 					  	<MenuItem onClick={handleClose}><Button color="inherit" component={NavLink} to="/about">About</Button> </MenuItem>
 							</div>)}
 					

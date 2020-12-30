@@ -5,7 +5,7 @@ import { Redirect, Route } from 'react-router-dom'
 const PrivateRoute = ({children, isAuthenticated,...rest}) => {
 	return (<Route {...rest} render={()=> {
 		return  isAuthenticated ? children : <Redirect to={{
-			pathname:"/login"
+			pathname:"/"
 		}} /> 
 	}}>
 
