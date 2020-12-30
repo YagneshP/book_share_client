@@ -13,6 +13,8 @@ export const signUpUser = (formData)=>{
 			getUser(dispatch);
 		} )
 		.catch(error => {
+		console.log(error.toJSON())
+			console.log(error)
 			signUpUserFail(dispatch, error.response.data.message) 
 		})  
 	}
