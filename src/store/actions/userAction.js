@@ -8,7 +8,7 @@ import {clearRentalUser} from "./rentalUsersActions"
 export const signUpUser = (formData)=>{
 	return dispatch => {
 		// /signup
-		axiosInstance.post("/auth/signup",formData)
+		axiosInstance.post("https://book-share-server-yp.herokuapp.com/api/auth/signup",formData)
 		.then(res =>{
 			getUser(dispatch);
 		} )
@@ -95,7 +95,6 @@ export const manualClearError = () => {
 	}
 }
 export const clearAlert = () => {
-	console.log("calling clear Error")
 return dispatch=> {
 	setTimeout(()=>{
 		clearError(dispatch)
