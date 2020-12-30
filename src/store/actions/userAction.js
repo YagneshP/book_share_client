@@ -8,7 +8,7 @@ import {clearRentalUser} from "./rentalUsersActions"
 export const signUpUser = (formData)=>{
 	return dispatch => {
 		// /signup
-		axiosInstance.post("https://book-share-server-yp.herokuapp.com/api/auth/signup",formData)
+		axiosInstance.post("/auth/signup",formData)
 		.then(res =>{
 			getUser(dispatch);
 		} )
