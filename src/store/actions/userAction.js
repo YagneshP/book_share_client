@@ -51,7 +51,7 @@ const logUserFail = (dispatch, error) =>{
 
 export const getUser = (dispatch)=>{
 		// /gettingUser from database
-		axiosInstance.get("/user").then(res => {
+		axiosInstance.get("/user",{withCredentials: true}).then(res => {
 			dispatch({
 				type: actionTypes.SET_USER,
 				payload: res.data
