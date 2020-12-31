@@ -4,7 +4,7 @@ import axiosInstance from "../../util/apiCall"
 // Finding Rental Users
 export const findRental = (userId, radius, bookName) => {
 	return dispatch =>{
-		axiosInstance.get(`http://localhost:8004/api/user/${userId}/findUsers`,
+		axiosInstance.get(`/user/${userId}/findUsers`,
 		{
 			params:{radius:radius, bookName:bookName}
 		}).then(res =>{

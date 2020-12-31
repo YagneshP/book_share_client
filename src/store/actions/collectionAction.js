@@ -6,7 +6,7 @@ import axiosInstance from "../../util/apiCall"
 export const getCollection = (userId) =>{
 	return dispatch => {
 		dispatch(getCollectionStart());
-		axiosInstance(`http://localhost:8004/api/user/${userId}/collection`)	
+		axiosInstance(`/user/${userId}/collection`)	
 		.then(res => setCollection(dispatch,res))
 		.catch(error => collectionError(dispatch,error));
 	}
@@ -25,7 +25,7 @@ const setCollection =(dispatch,data) =>{
 
 export const addCollection = (userId,volumeId) =>{
 	return dispatch => {
-		axiosInstance.post(`http://localhost:8004/api/user/${userId}/collection/add/${volumeId}`)
+		axiosInstance.post(`/user/${userId}/collection/add/${volumeId}`)
 		.then(res => {
 			addBookMessage(dispatch, res.data.message)
 			addBook(dispatch,res.data.newBook)})
@@ -49,7 +49,7 @@ const addBookMessage = (dispatch,msg) => {
 
 export const removeCollection = (userId, book_Id) => {
 	return dispatch => {
-		axiosInstance.delete(`http://localhost:8004/api/user/${userId}/collection/remove/${book_Id}`)
+		axiosInstance.delete(`/user/${userId}/collection/remove/${book_Id}`)
 		.then(res => {
 			removeBook(dispatch, res.data.removedBook)
 			addBookMessage(dispatch, res.data.message)
