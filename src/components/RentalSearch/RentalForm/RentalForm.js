@@ -46,7 +46,6 @@ const RentalForm = (props) => {
 
 	const handleSumbit = (e) =>{
 		e.preventDefault();
-		console.log("bookName:", bookName)
 		findUserRental(userId,radius,bookName)
 	}
 	return (

@@ -8,7 +8,6 @@ export const findRental = (userId, radius, bookName) => {
 		{
 			params:{radius:radius, bookName:bookName}
 		}).then(res =>{
-			console.log("response after sending radius and userId for serach rental:", res)
 			rentalUsers(dispatch,res.data)
 		}	)
 	}

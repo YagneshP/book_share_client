@@ -80,7 +80,6 @@ export const logOutUser = () =>{
 		.then((res)=>{
 			console.log(res)
 			loggingOut(dispatch)
-			getUser(dispatch)
 			clearRentalUser(dispatch)
 		}).catch(error => {
 			logUserFail(dispatch,error.response.data.message)
