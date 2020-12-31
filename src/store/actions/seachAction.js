@@ -23,7 +23,7 @@ export const clearResult = () => ({
  export const getSearchData =(query)=>{
 	 return  dispatch =>{
 		 dispatch(getSearchDataStart());
-		 axiosInstance.get("http://localhost:8004/api/books",
+		 axiosInstance.get("/books",
 		{
 			params:{q:query}
 		})
