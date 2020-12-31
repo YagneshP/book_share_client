@@ -81,6 +81,8 @@ export const logOutUser = () =>{
 			loggingOut(dispatch)
 			getUser(dispatch)
 			clearRentalUser(dispatch)
+		}).catch(error => {
+			logUserFail(dispatch,error.response.data.message)
 		})
 	}
 }
