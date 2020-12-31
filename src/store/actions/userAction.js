@@ -76,7 +76,7 @@ const loggingOut = (dispatch)=>{
 }
 export const logOutUser = () =>{
 	return dispatch =>{
-		axiosInstance.post("/auth/logout")
+		axiosInstance.post("/auth/logout",{withCredentials: true})
 		.then(()=>{
 			loggingOut(dispatch)
 			clearRentalUser(dispatch)
