@@ -6,7 +6,7 @@
 
  
 
-  <h3 align="center"><a href="https://github.com/YagneshP/book_share_client">project_title </a></h3>
+  <h3 align="center"><a href="https://github.com/YagneshP/book_share_client">BookShare </a></h3>
 
   <p align="center">
     <br />
@@ -27,7 +27,11 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+         <li><a href="#live-site-demo">Live Site Demo</a></li>
+         <li><a href="#video-demo">Video Demo</a></li>
+         <li><a href="#user-stories">User stories</a></li>
+         <li><a href="#future-expansion">Future Expansion</a></li>
+       <li><a href="#tech-stack">Tech stack</a></li>
       </ul>
     </li>
     <li>
@@ -37,7 +41,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -70,8 +73,8 @@
 
 ### Future Expansions
 
-- implemented more features like direct messaging to other user instead of showing users' emails.
-- Implements test coverage
+- implement more features like direct messaging to other user instead of showing users' emails.
+- Implement test coverage
 
 ---
 
@@ -113,8 +116,6 @@ This is an example of how to list things you need to use the software and how to
 | ------------ | -------- |
 | npm          | 6.4.1    |
 | nodejs       | 10.10.0  |
-| postgres     | 10.5     |
-| redis-server | 4.0.3    |
 
 ### Installation
 
@@ -126,17 +127,6 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -168,9 +158,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Yagnesh - [@yagnesh7488](https://twitter.com/home) - email
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/YagneshP/book_share_client/](https://github.com/YagneshP/book_share_client/)
 
 
 
