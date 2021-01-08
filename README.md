@@ -28,7 +28,6 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
          <li><a href="#live-site-demo">Live Site Demo</a></li>
-         <li><a href="#video-demo">Video Demo</a></li>
          <li><a href="#user-stories">User stories</a></li>
          <li><a href="#future-expansion">Future Expansion</a></li>
        <li><a href="#tech-stack">Tech stack</a></li>
@@ -56,10 +55,6 @@
 ### Live Site Demo
 
 [Link](https://book-share-client-yp.herokuapp.com/)
-
-### Video Demo
-
-
 
 ---
 
