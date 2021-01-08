@@ -45,7 +45,6 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -165,16 +164,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 - [Email](mailto:yagneshparekhdev@gmail.com)
 
 Project Link: [https://github.com/YagneshP/book_share_client/](https://github.com/YagneshP/book_share_client/)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
 
 
 
