@@ -158,7 +158,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Yagnesh - [@yagnesh7488](https://twitter.com/home) - email
+Twitter - [@yagnesh7488](https://twitter.com/home) - email -[mailto](mailto:yagneshparekhdev@gmail.com)
 
 Project Link: [https://github.com/YagneshP/book_share_client/](https://github.com/YagneshP/book_share_client/)
 
