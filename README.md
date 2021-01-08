@@ -121,17 +121,20 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/YagneshP/book_share_client.git
    ```
 2. Install NPM packages
    ```sh
    npm install
    ```
-
+3. Start application, will be running on [http://localhost:3000]
+   ```sh
+    npm start
+   ```
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/YagneshP/book_share_client/issues) for a list of proposed features (and known issues).
 
 
 
