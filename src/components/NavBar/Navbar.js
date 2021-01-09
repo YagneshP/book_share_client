@@ -66,7 +66,7 @@ const handleNavClick = () =>{
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            BookShare
+            Book-Share
           </Typography>
 				{mediaQuery ?
 				(<>				
