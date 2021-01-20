@@ -1,10 +1,7 @@
-# BookShare App/ client #
-
+# BookShare App/ client
 
 <!-- PROJECT LOGO -->
 <br />
-
- 
 
   <h3 align="center"><a href="https://github.com/YagneshP/book_share_client">BookShare </a></h3>
 
@@ -17,8 +14,6 @@
     <a href="https://github.com/YagneshP/book_share_client/issues">Request Feature</a>
   </p>
 </p>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -47,9 +42,8 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 ### Live Site Demo
@@ -61,9 +55,9 @@
 ### User Stories
 
 - users can register and log in to their account
-- users can search books 
+- users can search books
 - users can add / remove book to thier collection
-- users can search other users who have particular book by entering book's name and distance 
+- users can search other users who have particular book by entering book's name and distance
 
 ### Future Expansions
 
@@ -76,23 +70,21 @@
 
 - [React](https://github.com/facebook/react) ∙ [React-Router](https://github.com/ReactTraining/react-router)
   - component based single page application
-- [Redux](https://github.com/reduxjs/redux) ∙ [Redux-Thunk](https://github.com/reduxjs/redux-thunk) 
+- [Redux](https://github.com/reduxjs/redux) ∙ [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
   - client side data management
 - [MaterialUI](https://github.com/mui-org/material-ui)
   - Styling
-- [Node.js](https://github.com/nodejs) ∙ [Express](https://github.com/expressjs/express) 
+- [Node.js](https://github.com/nodejs) ∙ [Express](https://github.com/expressjs/express)
   - web server & services in service oriented architecure
-- RESTful API 
-  - HTTP 
+- RESTful API
+  - HTTP
 - [jwt](https://www.npmjs.com/package/jsonwebtoken)
   - Authorization implementation.
-- [MongoDb](https://www.mongodb.com/cloud/atlas) 
+- [MongoDb](https://www.mongodb.com/cloud/atlas)
   - database
 
-
-
-
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
@@ -100,16 +92,18 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+
+- npm
   ```sh
   npm install npm@latest -g
   ```
+
 #### Tools & Versions
 
-| Softwares    | Versions |
-| ------------ | -------- |
-| npm          | 6.4.1    |
-| nodejs       | 10.10.0  |
+| Softwares | Versions |
+| --------- | -------- |
+| npm       | 6.4.1    |
+| nodejs    | 10.10.0  |
 
 ### Installation
 
@@ -125,14 +119,14 @@ This is an example of how to list things you need to use the software and how to
    ```sh
     npm start
    ```
-<!-- ROADMAP -->
+   <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/YagneshP/book_share_client/issues) for a list of proposed features (and known issues).
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -143,19 +137,17 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
-- [Twitter](https://twitter.com/home) 
+- [Twitter](https://twitter.com/home)
 - [Email](mailto:yagneshparekhdev@gmail.com)
 
 Project Link: [https://github.com/YagneshP/book_share_client/](https://github.com/YagneshP/book_share_client/)
