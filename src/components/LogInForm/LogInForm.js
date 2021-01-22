@@ -1,33 +1,57 @@
 import React, { useEffect } from "react";
-import { TextField, Button, Grid, Typography, Link } from "@material-ui/core";
+import { TextField, Button, Grid, Typography, Link, Container,Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import "./Icon.css"
 import { Formik, Form, Field, useField } from "formik";
-import MenuBookIcon from "@material-ui/icons/MenuBook";
+
 import * as Yup from "yup";
 import { signUpUser, logUser } from "../../store/actions/userAction";
 import { connect } from "react-redux";
 import { toggleForm } from "../../store/actions/toggleFormAction";
+import { Icon, InlineIcon } from '@iconify/react';
+import formLine from '@iconify/icons-clarity/form-line';
+import loginIcon from '@iconify/icons-carbon/login';
+import CustomButton from "../customComponent/CustomButton/CustomButton";
+
 const useStyles = makeStyles((theme) => ({
-  formDiv: {
-    height: "100%",
-    marginTop: "10vh",
+  main: {
+		display:"flex",
+		justifyContent:"space-between"
   },
   formBox: {
-    margin: "10px auto",
-    padding: "10px 10px",
+		flexDirection:"column",
+		width:"400px", 
+		padding: "12px 25px",
+		backgroundColor:"rgba(4, 28, 41, 0.25)",
     borderRadius: "10px",
-    backgroundColor: "#d4d8efc7",
-    boxShadow:
-      " 5px 6px 10px rgba(112,115,115,0.2),-5px 6px 10px rgba(112,115,115,0.2),-5px -6px 10px rgba(112,115,115,0.2) ",
   },
   root: {
-    width: "80vw",
+		display:"flex",
+		flexDirection:"column",
+		alignItems:"center",
     "& > *": {
-      marginBottom: theme.spacing(1),
-      width: "80vw",
-    },
+			marginBottom:theme.spacing(1),
+			width: "100%",
+		},
+	
   },
 }));
+
+const useStylesInput = makeStyles((theme)=> ({
+	root:{
+    borderRadius: 4
+	},
+	input:{
+		color:"#041C29",
+		backgroundColor: "white",
+		'&::placeholder': {
+      color: 'white'
+	},
+	"&:focused":{
+		backgroundColor:"yellow"
+	}
+}
+}))
 
 const initialValues = {
   firstName: "",
@@ -45,13 +69,20 @@ const validationSchema = Yup.object().shape({
 });
 
 const CustomField = ({ label, placeholder, type, required, ...props }) => {
+	const inputClasses = useStylesInput();
   const [field, form] = useField(props);
   const errorText = form.error && form.touched ? form.error : "";
   return (
     <TextField
+		// className={inputClasses.root}
+		variant= "filled"
+		size="small"
       type={type}
-      required={required}
-      label={label}
+			required={required}
+			label={label}
+			InputProps={{
+				className: inputClasses.input
+			}}
       {...field}
       helperText={errorText}
       error={!!errorText}
@@ -66,31 +97,15 @@ const LogInForm = (props) => {
       props.history.push("/library");
     }
   }, [isAuthenticated, props.history]);
-  const classes = useStyles();
+	const classes = useStyles();
+	
   return (
-    <Grid container className={classes.formDiv}>
-      <div className={classes.formBox}>
-        <Grid style={{ textAlign: "center" }}>
-          <MenuBookIcon
-            fontSize="large"
-            style={{
-              color: "#3d41d0d4",
-              display: "inline-block",
-              verticalAlign: "bottom",
-            }}
-          />
-          <Typography
-            variant="h6"
-            style={{
-              display: "inline-block",
-              marginLeft: "15px",
-              color: "#3d41d0d4",
-            }}
-          >
-            {loggedIn ? "LogIn" : "SignUp"} Form
-          </Typography>
+    <Container className={classes.main} >
+      <Grid item container className={classes.formBox} xs={12} md={6}  style={{marginLeft:"35px"}}>
+        <Grid item style={{ textAlign: "center", paddingBottom:"25px"}}>
+        	<h3 style={{display:"inline-block", fontSize:"1.9rem", margin:"0.5rem 0"}}> {loggedIn ? "LogIn" : "SignUp"} Form</h3>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item >
           <Formik
             enableReinitialize={true}
             initialValues={initialValues}
@@ -158,28 +173,26 @@ const LogInForm = (props) => {
                   as={CustomField}
                   required
                 />
-                <Button
-                  color="primary"
-                  variant="contained"
-                  fullWidth
-                  type="submit"
-                >
-                  {loggedIn ? "Log In" : "Sign Up"}
-                </Button>
+								<CustomButton type="submit"   style={{width:"200px"}} >
+								{loggedIn ? "Log In" : "Sign Up"}
+								</CustomButton>
               </Form>
             )}
           </Formik>
         </Grid>
 
         <Grid item>
-          <Typography variant="body2" style={{ textAlign: "center" }}>
+          <p style={{ textAlign: "center" }}>
             Already have an account ?{" "}
-            <Link onClick={toggleForm}>{loggedIn ? "SignUp" : "LogIn"}</Link>{" "}
+           <span style={{fontWeight:"bold"}}> <Link onClick={toggleForm}>{loggedIn ? "SignUp" : "LogIn"}</Link>{" "}</span>
             here
-          </Typography>
+          </p>
         </Grid>
-      </div>
-    </Grid>
+      </Grid>
+			<Grid item xs={0}  md={4} style={{padding:"0 25px", alignSelf:"center"}}>
+			{loggedIn?<Icon icon={loginIcon} className="icon"/>: <Icon icon={formLine} className="icon" /> }
+			</Grid>
+    </Container>
   );
 };
 const mapStateToProps = (state) => ({

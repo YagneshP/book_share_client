@@ -3,26 +3,25 @@ import Navbar from "./components/NavBar/Navbar";
 import BookCollection from "./components/BookCollection/BookCollection";
 import { makeStyles } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Grid } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import LogInForm from "./components/LogInForm/LogInForm";
 import Library from "./components/Library/Library";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import AlertState from "./components/AlertState/AlertState";
 import RentalSearch from "./components/RentalSearch/RentalSearch";
 import About from "./components/About/About";
-
-const useStyles = makeStyles((theme) => ({
-  navbar: {
-    textAlign: "center",
-  },
-}));
+import Home from "./components/Home/Home"
+import Footer from "./components/Footer/Footer";
 
 function App(props) {
-  const classes = useStyles();
+ 
   return (
+		<div style={{ position:"relative"}}>
+		
     <Router>
-      <Grid container direction="column" positon="relative">
-        <Grid item className={classes.navbar}>
+
+      <Grid container direction="column"  >
+        <Grid item >
           <Navbar />
         </Grid>
         <Grid item top={40} left="40%" postion="absolute">
@@ -43,11 +42,18 @@ function App(props) {
             <PrivateRoute exact path="/findRental">
               <RentalSearch />
             </PrivateRoute>
-            <Route exact path="/" component={LogInForm} />
+            <Route exact path="/auth" component={LogInForm} />
+						<Route exact path="/" component={Home}/>
           </Switch>
         </Grid>
+				<Grid item  >
+					<Footer ></Footer>
+        </Grid>
       </Grid>
+		
     </Router>
+	
+		</div>
   );
 }
 

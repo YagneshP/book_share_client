@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Button,
   IconButton,
   MenuItem,
@@ -18,17 +17,16 @@ import { clearRentalUser } from "../../store/actions/rentalUsersActions";
 import { getCollection } from "../../store/actions/collectionAction";
 import { clearResult } from "../../store/actions/seachAction";
 import { logInForm, signUpForm } from "../../store/actions/toggleFormAction";
+import "./Navbar.css"
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    textAlign: "left",
-  },
-  menuButton: {
-    // marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
+		textAlign: "left",
+	
+	},
+	colorPrimary:{
+		backgroundColor:'#D9EAFF'
+	}
 }));
 
 function Navbar(props) {
@@ -80,12 +78,10 @@ function Navbar(props) {
     }
   };
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
+    <div >
+      <AppBar position="static" className={`${classes.root} ${classes.colorPrimary}`}>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Book-Share
-          </Typography>
+					<h3 className={`Brand-Title`}>BookShare</h3>
           {mediaQuery ? (
             <>
               <IconButton
@@ -93,7 +89,6 @@ function Navbar(props) {
                 className={classes.menuButton}
                 aria-controls="simple-menu"
                 aria-haspopup="true"
-                color="inherit"
                 aria-label="menu"
                 onClick={handleMenuClick}
               >
@@ -107,15 +102,14 @@ function Navbar(props) {
                 onClose={handleClose}
               >
                 {isAuthenticated ? (
-                  <div>
+                  <div >
                     <MenuItem onClick={handleClose}>
-                      <Button color="inherit" component={NavLink} to="/library">
+                      <Button  component={NavLink} to="/library">
                         Library
                       </Button>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Button
-                        color="inherit"
                         component={NavLink}
                         to="/collection"
                       >
@@ -124,7 +118,6 @@ function Navbar(props) {
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
                       <Button
-                        color="inherit"
                         component={NavLink}
                         to="/findRental"
                       >
@@ -138,17 +131,17 @@ function Navbar(props) {
                 ) : (
                   <div>
                     <MenuItem onClick={handleLogInClose}>
-                      <Button color="primary" component={NavLink} to="/">
+                      <Button  component={NavLink} to="/auth">
                         Login
                       </Button>
                     </MenuItem>
                     <MenuItem onClick={handleSignUpCLose}>
-                      <Button color="inherit" component={NavLink} to="/">
+                      <Button  component={NavLink} to="/auth">
                         SignUp
                       </Button>
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
-                      <Button color="inherit" component={NavLink} to="/about">
+                      <Button  component={NavLink} to="/about">
                         About
                       </Button>{" "}
                     </MenuItem>
@@ -159,7 +152,6 @@ function Navbar(props) {
           ) : isAuthenticated ? (
             <>
               <Button
-                color="inherit"
                 onClick={handleNavClick}
                 component={NavLink}
                 to="/library"
@@ -167,39 +159,36 @@ function Navbar(props) {
                 Library
               </Button>
               <Button
-                color="inherit"
                 onClick={handleNavClick}
                 component={NavLink}
                 to="/collection"
               >
                 Collection
               </Button>
-              <Button color="inherit" component={NavLink} to="/findRental">
+              <Button component={NavLink} to="/findRental">
                 FindRental
               </Button>
-              <Button color="inherit" onClick={handleLogOutClick}>
+              <Button  onClick={handleLogOutClick}>
                 Logout
               </Button>
             </>
           ) : (
             <>
               <Button
-                color="inherit"
                 onClick={() => changeLogIn()}
                 component={NavLink}
-                to="/"
+                to="/auth"
               >
                 Login
               </Button>
               <Button
-                color="inherit"
                 onClick={() => changeSignUp()}
                 component={NavLink}
-                to="/"
+                to="/auth"
               >
                 SignUp
               </Button>
-              <Button color="inherit" component={NavLink} to="/about">
+              <Button component={NavLink} to="/about">
                 About
               </Button>
             </>

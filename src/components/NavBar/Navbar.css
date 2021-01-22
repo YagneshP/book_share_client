@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+.Brand-Title{
+	flex-grow: 1;
+	margin:0 0.7em;
+	font-family:'Comic Neue', cursive; 
+	font-size: 1.6em;
+	color: #041C29;
+}
+

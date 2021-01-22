@@ -1,0 +1,60 @@
+
+.grid-1{
+	height:400px;
+}
+
+.main-desc{
+	font-size: 3.4em;
+	margin-bottom: 0.5em;
+}
+.headline{
+	font-size: 1.6em;
+}
+
+.register{
+	background-color:#041C29 ;
+	color:#ffffff;
+	font-size:20px;
+	padding: 20px;
+	border-radius: 15px ;
+	font-weight: bold;
+}
+
+.lp-main{
+	transform:scale(1.5);
+}
+
+@media screen and (max-width: 900px){
+	.lp-main{
+		transform: scale(1);
+	}
+	.main-desc{
+		font-size: 2.8em;
+	
+	}
+	.headline{
+		font-size: 1.2em;
+	}
+}
+
+@media screen and (max-width: 700px){
+	.lp-main{
+		transform: scale(0.8);
+	}
+	.main-desc{
+		font-size: 2.5em;
+	
+	}
+	.headline{
+		font-size: 1em;
+	}
+}
+
+@media screen and (max-width: 600px){
+	.grid-1{
+		text-align: center;
+	}
+	.lp-main{
+		display: none;
+	}
+}

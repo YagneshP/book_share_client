@@ -1,0 +1,18 @@
+.icon{
+	color: #041c29;
+	font-size: 20rem;
+}
+
+
+
+
+@media screen and (max-width:900px){
+	.icon{
+		font-size:10rem;
+	}
+}
+@media screen and (max-width:600px){
+	.icon{
+		display:none;
+	}
+}

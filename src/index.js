@@ -12,15 +12,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
 import formReducer from "./store/reducers/form";
 import rentalUserReducer from "./store/reducers/rentalUser";
-// import axios from "axios";
-//request interceptor
-// axios.interceptors.request.use(function (config) {
-// 	// Do something before request is sent
-// 	return config;
-// }, function (error) {
-// 	// Do something with request error
-// 	return Promise.reject(error);
-// });
+
 const persistConfig = {
   key: "root",
   storage,
