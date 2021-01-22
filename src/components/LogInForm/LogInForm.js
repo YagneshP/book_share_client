@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { TextField, Button, Grid, Typography, Link, Container,Box } from "@material-ui/core";
+import { TextField,Grid, Link, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import "./Icon.css"
 import { Formik, Form, Field, useField } from "formik";
@@ -183,7 +183,7 @@ const LogInForm = (props) => {
 
         <Grid item>
           <p style={{ textAlign: "center" }}>
-            Already have an account ?{" "}
+           { loggedIn ? `Don't have an account ?` : `Already have an account ?`}
            <span style={{fontWeight:"bold"}}> <Link onClick={toggleForm}>{loggedIn ? "SignUp" : "LogIn"}</Link>{" "}</span>
             here
           </p>
