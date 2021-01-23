@@ -6,9 +6,14 @@
 
 
 
-@media screen and (max-width:900px){
+@media screen and (max-width:1000px){
 	.icon{
 		font-size:10rem;
+	}
+}
+@media screen and (max-width:800px){
+	.icon{
+		font-size:9rem;
 	}
 }
 @media screen and (max-width:600px){

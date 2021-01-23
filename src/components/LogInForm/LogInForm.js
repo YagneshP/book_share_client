@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
   formBox: {
 		flexDirection:"column",
-		width:"400px", 
+		// width:"25em", 
+		// marginLeft:"2em",
 		padding: "12px 25px",
 		backgroundColor:"rgba(4, 28, 41, 0.25)",
     borderRadius: "10px",
@@ -100,8 +101,8 @@ const LogInForm = (props) => {
 	const classes = useStyles();
 	
   return (
-    <Container className={classes.main} >
-      <Grid item container className={classes.formBox} xs={12} md={6}  style={{marginLeft:"35px"}}>
+    <Container className={classes.main} xs={12}>
+      <Grid item container className={classes.formBox} xs={12} sm={6}  >
         <Grid item style={{ textAlign: "center", paddingBottom:"25px"}}>
         	<h3 style={{display:"inline-block", fontSize:"1.9rem", margin:"0.5rem 0"}}> {loggedIn ? "LogIn" : "SignUp"} Form</h3>
         </Grid>
@@ -189,7 +190,7 @@ const LogInForm = (props) => {
           </p>
         </Grid>
       </Grid>
-			<Grid item xs={0}  md={4} style={{padding:"0 25px", alignSelf:"center"}}>
+			<Grid item  sm={4} style={{ alignSelf:"center"}}>
 			{loggedIn?<Icon icon={loginIcon} className="icon"/>: <Icon icon={formLine} className="icon" /> }
 			</Grid>
     </Container>
