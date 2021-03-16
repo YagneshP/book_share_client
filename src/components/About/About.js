@@ -31,7 +31,7 @@ const About = () => {
               <SearchIcon style={{ color: "#343f88b0" }} />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Seach who else have the book , which you are keen to read" />
+          <ListItemText primary="Search who else have the book , which you are keen to read" />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
