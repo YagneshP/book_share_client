@@ -1,9 +1,8 @@
 import React from "react";
 import Navbar from "./components/NavBar/Navbar";
 import BookCollection from "./components/BookCollection/BookCollection";
-import { makeStyles } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Container, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import LogInForm from "./components/LogInForm/LogInForm";
 import Library from "./components/Library/Library";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";

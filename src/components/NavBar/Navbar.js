@@ -7,7 +7,6 @@ import {
   IconButton,
   MenuItem,
 	Menu,
-	Link,
   useMediaQuery,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";

@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { signUpUser, logUser } from "../../store/actions/userAction";
 import { connect } from "react-redux";
 import { toggleForm } from "../../store/actions/toggleFormAction";
-import { Icon, InlineIcon } from '@iconify/react';
+import { Icon} from '@iconify/react';
 import formLine from '@iconify/icons-clarity/form-line';
 import loginIcon from '@iconify/icons-carbon/login';
 import CustomButton from "../customComponent/CustomButton/CustomButton";
