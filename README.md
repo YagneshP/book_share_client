@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 
-  <h3 align="center"><a href="https://github.com/YagneshP/book_share_client">BookShare </a></h3>
+  <h3 align="center"><a href="https://book-share-client-yp.herokuapp.com/">BookShare </a></h3>
 
   <p align="center">
     <br />
