@@ -6,7 +6,8 @@ import {
   Button,
   IconButton,
   MenuItem,
-  Menu,
+	Menu,
+	Link,
   useMediaQuery,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -81,7 +82,7 @@ function Navbar(props) {
     <div >
       <AppBar position="static" className={`${classes.root} ${classes.colorPrimary}`}>
         <Toolbar>
-					<h3 className={`Brand-Title`}>BookShare</h3>
+			<h3 className={`Brand-Title`}>BookShare</h3>
           {mediaQuery ? (
             <>
               <IconButton

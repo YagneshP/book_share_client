@@ -20,8 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
   formBox: {
 		flexDirection:"column",
-		// width:"25em", 
-		// marginLeft:"2em",
 		padding: "12px 25px",
 		backgroundColor:"rgba(4, 28, 41, 0.25)",
     borderRadius: "10px",
@@ -75,7 +73,6 @@ const CustomField = ({ label, placeholder, type, required, ...props }) => {
   const errorText = form.error && form.touched ? form.error : "";
   return (
     <TextField
-		// className={inputClasses.root}
 		variant= "filled"
 		size="small"
       type={type}

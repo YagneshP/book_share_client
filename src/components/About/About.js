@@ -23,7 +23,7 @@ const About = () => {
               <LibraryBooksIcon style={{ color: "#d5e1fd" }} />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="You can find and make your collection of books" />
+          <ListItemText  primary="You can find and make your collection of books" />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
