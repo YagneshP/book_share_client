@@ -1,20 +1,7 @@
-// import { Button } from '@material-ui/core'
-// import React from 'react'
 
-// const CustomButton = () => {
-// 	return (
-// 	<Button>
-// 	)
-// }
-
-// export default CustomButton
-
-import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-// The `withStyles()` higher-order component is injecting a `classes`
-// prop that is used by the `Button` component.
 const CustomButton = withStyles({
   root: {
 		border: 0,
